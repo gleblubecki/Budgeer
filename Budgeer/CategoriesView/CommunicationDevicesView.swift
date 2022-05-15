@@ -8,7 +8,7 @@ struct CommunicationDevicesView: View {
         var total = 0.0
         
         for item in expences.items {
-            if item.type == "💻Communication & Devices" {
+            if item.type == "💻Devices" {
                 total += item.amount
             }
         }
@@ -27,7 +27,7 @@ struct CommunicationDevicesView: View {
                 
                 Section {
                     ForEach(expences.items) { item in
-                        if item.type == "💻Communication & Devices" {
+                        if item.type == "💻Devices" {
                             HStack {
                                 VStack(alignment: .leading) {
                                     Text(item.name)

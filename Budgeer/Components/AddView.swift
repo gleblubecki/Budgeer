@@ -30,7 +30,7 @@ struct AddView: View {
                 .toolbar {
                     Button("Save") {
                         let item = ExpenceItem(name: name, type: type, amount: amount)
-                        expences.items.append(item)
+                        expences.items.insert(item, at: 0)
                         dismiss()
                     }
                 }

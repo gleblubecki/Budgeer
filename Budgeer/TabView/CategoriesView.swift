@@ -11,7 +11,7 @@ struct CategoriesView: View {
     @State private var showingOtherExpence = false
 
     
-    let types = ["🏠Housing", "🛍️Shopping", "🥪Food & Drinks", "🚋Transportation", "🎉Life & Entertainment", "💻Communication & Devices", "📄Other"]
+    let types = ["🏠Housing", "🛍️Shopping", "🥪Food & Drinks", "🚋Transportation", "🎉Life & Entertainment", "💻Devices", "📄Other"]
     
     var body: some View {
         NavigationView {
@@ -57,7 +57,7 @@ struct CategoriesView: View {
                         .foregroundColor(.black)
                         .font(.headline)
                     
-                    Button("Communication & Devices expences") {
+                    Button("Devices") {
                         showingCommunicationDevicesExpence = true
                     } .sheet(isPresented: $showingCommunicationDevicesExpence) {
                         ShoppingView(expences: expences)
@@ -87,3 +87,4 @@ struct CategoriesView_Previews: PreviewProvider {
         CategoriesView()
     }
 }
+

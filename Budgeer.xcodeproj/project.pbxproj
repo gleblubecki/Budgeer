@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D104998D28311B4D00EC209F /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D104998C28311B4D00EC209F /* TestView.swift */; };
 		D16A871628298AD200E2128D /* BudgeerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D16A871528298AD200E2128D /* BudgeerApp.swift */; };
 		D16A871A28298AD400E2128D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D16A871928298AD400E2128D /* Assets.xcassets */; };
 		D16A871D28298AD400E2128D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D16A871C28298AD400E2128D /* Preview Assets.xcassets */; };
 		D16A874328298BD900E2128D /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D16A874228298BD900E2128D /* HomeView.swift */; };
-		D16A8745282991BA00E2128D /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D16A8744282991BA00E2128D /* AboutView.swift */; };
 		D16A8747282991D000E2128D /* CategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D16A8746282991D000E2128D /* CategoriesView.swift */; };
 		D16A874A2829929E00E2128D /* HousingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D16A87492829929E00E2128D /* HousingView.swift */; };
 		D16A874D282992EB00E2128D /* ShoppingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D16A874C282992EB00E2128D /* ShoppingView.swift */; };
@@ -44,6 +44,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D104998C28311B4D00EC209F /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		D16A871228298AD200E2128D /* Budgeer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Budgeer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D16A871528298AD200E2128D /* BudgeerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgeerApp.swift; sourceTree = "<group>"; };
 		D16A871928298AD400E2128D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -51,7 +52,6 @@
 		D16A872228298AD400E2128D /* BudgeerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BudgeerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D16A872C28298AD400E2128D /* BudgeerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BudgeerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D16A874228298BD900E2128D /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		D16A8744282991BA00E2128D /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		D16A8746282991D000E2128D /* CategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesView.swift; sourceTree = "<group>"; };
 		D16A87492829929E00E2128D /* HousingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HousingView.swift; sourceTree = "<group>"; };
 		D16A874C282992EB00E2128D /* ShoppingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingView.swift; sourceTree = "<group>"; };
@@ -94,6 +94,7 @@
 		D16A870928298AD200E2128D = {
 			isa = PBXGroup;
 			children = (
+				D104998C28311B4D00EC209F /* TestView.swift */,
 				D16A871428298AD200E2128D /* Budgeer */,
 				D16A871328298AD200E2128D /* Products */,
 			);
@@ -136,7 +137,6 @@
 			isa = PBXGroup;
 			children = (
 				D16A874228298BD900E2128D /* HomeView.swift */,
-				D16A8744282991BA00E2128D /* AboutView.swift */,
 				D16A8746282991D000E2128D /* CategoriesView.swift */,
 			);
 			path = TabView;
@@ -307,9 +307,9 @@
 				D16A871628298AD200E2128D /* BudgeerApp.swift in Sources */,
 				D16A874D282992EB00E2128D /* ShoppingView.swift in Sources */,
 				D16A874A2829929E00E2128D /* HousingView.swift in Sources */,
-				D16A8745282991BA00E2128D /* AboutView.swift in Sources */,
 				D16A87572829937700E2128D /* OtherView.swift in Sources */,
 				D16A874F2829930A00E2128D /* FoodDrinksView.swift in Sources */,
+				D104998D28311B4D00EC209F /* TestView.swift in Sources */,
 				D16A875F2829942000E2128D /* ExpenceItem.swift in Sources */,
 				D16A87512829932700E2128D /* TransportationView.swift in Sources */,
 				D16A8759282993A000E2128D /* AddView.swift in Sources */,
