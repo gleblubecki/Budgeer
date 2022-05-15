@@ -5,11 +5,11 @@ struct ContentView: View {
             
     var body: some View {
         TabView {
-            TestView()
+            HomeView(expences: Expences())
                 .tabItem {
                     Label("Home", systemImage: "house")
                 }
-            CategoriesView()
+            CategoriesView(expences: Expences())
                 .tabItem {
                     Label("Categories", systemImage: "list.bullet.rectangle.portrait.fill")
                 }

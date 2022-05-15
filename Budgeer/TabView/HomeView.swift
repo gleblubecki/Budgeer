@@ -12,22 +12,66 @@ struct HomeView: View {
         }
         return total
     }
-    
+
     var body: some View {
         ZStack {
-            NavigationView {
-                    List {
-                        Section {
-                            HStack(alignment: .center) {
-                                Text(totalSum, format: .currency(code: Locale.current.currencyCode ?? "USD"))
-                                    .fontWeight(.semibold)
-                            }
-                        }  header: {
-                            Text("Your expenses for all time")
-                                .font(.headline)
+            Color("BgColor")
+                .ignoresSafeArea()
+            
+            VStack {
+                VStack {
+                    HStack {
+                        Text("Budgeer")
+                            .font(.system(size: 40))
+                            .fontWeight(.bold)
+                            .padding(20)
+                            .foregroundColor(Color("LogoColor"))
+                        
+                        Spacer()
+                        Spacer()
+                        Spacer()
+                        
+                        Button {
+                            showingAddExpence = true
+                        } label: {
+                            Image(systemName: "plus")
+                                .font(.system(size: 25))
+                        }
+                        .sheet(isPresented: $showingAddExpence) {
+                            AddView(expences: expences)
                         }
                         
+                        Spacer()
+                    }
+                    
+                    HStack {
+                        Text("Your expenses for all time: ")
+                            .font(.system(size: 25))
+                            .fontWeight(.semibold)
+                    }
+                    
+                    VStack {
+                        HStack {
+                            Text(totalSum, format: .currency(code: Locale.current.currencyCode ?? "USD"))
+                                .font(.system(size: 20))
+                                .fontWeight(.regular)
+                        }
+                    }
+                    .frame(width: 200, height: 30, alignment: .center)
+                    .cornerRadius(20)
+                    .padding(10)
+                    .background(.white)
+                    .clipShape(RoundedRectangle(cornerRadius: 15))
+                    
+                    List {
                         Section {
+                            HStack {
+                                Text("Recent expenses: ")
+                                    .font(.system(size: 20))
+                                    .fontWeight(.medium)
+                                    .foregroundColor(Color("TitleColor"))
+                            }
+                            
                             ForEach(expences.items) { item in
                                 HStack {
                                     VStack(alignment: .leading) {
@@ -35,38 +79,26 @@ struct HomeView: View {
                                             .font(.headline)
                                         Text(item.type)
                                     }
-                                        
+
                                     Spacer()
-                                        
+
                                     Rectangle()
                                         .frame(width: 5, height: 30)
                                         .cornerRadius(10)
                                         .foregroundColor(item.amount < 10 ? .green : (item.amount < 100 ? .orange : .red))
-                                        
+
                                     Text(item.amount, format: .currency(code: Locale.current.currencyCode ?? "USD"))
-                                        
+
                                 }
                             }
                             .onDelete(perform: removeItems)
-                        } header: {
-                            Text("Recent expences")
-                                .font(.headline)
                         }
-                    }
-                    .navigationTitle("Budgeer")
-                    .toolbar {
-                        Button {
-                            showingAddExpence = true
-                        } label: {
-                            Image(systemName: "plus")
-                        }
-                    }
-                    .sheet(isPresented: $showingAddExpence) {
-                        AddView(expences: expences)
                     }
                 }
             }
         }
+    }
+    
     func removeItems(at offsets: IndexSet) {
         expences.items.remove(atOffsets: offsets)
     }
