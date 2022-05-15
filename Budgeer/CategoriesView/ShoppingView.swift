@@ -48,7 +48,7 @@ struct ShoppingView: View {
                         .font(.subheadline)
                 }
             }
-            .navigationTitle("Shopping expences")
+            .navigationTitle("Shopping")
             .toolbar {
                 Button("Done") { dismiss() }
             }

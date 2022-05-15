@@ -49,7 +49,7 @@ struct CategoriesView: View {
                         .foregroundColor(.black)
                         .font(.headline)
                     
-                    Button("Life & Entertainment expences") {
+                    Button("Entertainment expences") {
                         showingLifeEntertainmentExpence = true
                     } .sheet(isPresented: $showingLifeEntertainmentExpence) {
                         LifeEntertainmentView(expences: expences)
@@ -60,7 +60,7 @@ struct CategoriesView: View {
                     Button("Devices") {
                         showingCommunicationDevicesExpence = true
                     } .sheet(isPresented: $showingCommunicationDevicesExpence) {
-                        ShoppingView(expences: expences)
+                        CommunicationDevicesView(expences: expences)
                     }
                         .foregroundColor(.black)
                         .font(.headline)

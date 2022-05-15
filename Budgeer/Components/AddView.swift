@@ -8,7 +8,7 @@ struct AddView: View {
     @State private var type = "🏠Housing"
     @State private var amount = 0.0
         
-    let types = ["🏠Housing", "🛍️Shopping", "🥪Food & Drinks", "🚋Transportation", "🎉Life & Entertainment", "💻Devices", "📄Other"]
+    let types = ["🏠Housing", "🛍️Shopping", "🥪Food & Drinks", "🚋Transportation", "🎉Entertainment", "💻Devices", "📄Other"]
    
     var body: some View {
         ZStack {

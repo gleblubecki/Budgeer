@@ -3,7 +3,7 @@ import SwiftUI
 struct HomeView: View {
     @StateObject var expences = Expences()
     @State private var showingAddExpence = false
-    
+        
     var totalSum: Double {
         var total = 0.0
         
@@ -36,6 +36,7 @@ struct HomeView: View {
                         } label: {
                             Image(systemName: "plus")
                                 .font(.system(size: 25))
+                            
                         }
                         .sheet(isPresented: $showingAddExpence) {
                             AddView(expences: expences)

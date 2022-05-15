@@ -48,7 +48,7 @@ struct FoodDrinksView: View {
                         .font(.subheadline)
                 }
             }
-            .navigationTitle("Food & Drinks expences")
+            .navigationTitle("Food & Drinks")
             .toolbar {
                 Button("Done") { dismiss() }
             }

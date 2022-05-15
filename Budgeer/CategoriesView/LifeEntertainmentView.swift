@@ -8,7 +8,7 @@ struct LifeEntertainmentView: View {
         var total = 0.0
         
         for item in expences.items {
-            if item.type == "🎉Life & Entertainment" {
+            if item.type == "🎉Entertainment" {
                 total += item.amount
             }
         }
@@ -27,7 +27,7 @@ struct LifeEntertainmentView: View {
                 
                 Section {
                     ForEach(expences.items) { item in
-                        if item.type == "🎉Life & Entertainment" {
+                        if item.type == "🎉Entertainment" {
                             HStack {
                                 VStack(alignment: .leading) {
                                     Text(item.name)
@@ -48,7 +48,7 @@ struct LifeEntertainmentView: View {
                         .font(.subheadline)
                 }
             }
-            .navigationTitle("Life & Entertainment expences")
+            .navigationTitle("Life & Entertainment")
             .toolbar {
                 Button("Done") { dismiss() }
             }

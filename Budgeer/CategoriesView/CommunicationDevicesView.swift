@@ -48,7 +48,7 @@ struct CommunicationDevicesView: View {
                         .font(.subheadline)
                 }
             }
-            .navigationTitle("Communication & Devices expences")
+            .navigationTitle("Communication & Devices")
             .toolbar {
                 Button("Done") { dismiss() }
             }

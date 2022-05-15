@@ -48,7 +48,7 @@ struct HousingView: View {
                         .font(.subheadline)
                 }
             }
-            .navigationTitle("Housing expences")
+            .navigationTitle("Housing")
             .toolbar {
                 Button("Done") { dismiss() }
             }

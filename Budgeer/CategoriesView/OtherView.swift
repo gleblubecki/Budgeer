@@ -48,7 +48,7 @@ struct OtherView: View {
                         .font(.subheadline)
                 }
             }
-            .navigationTitle("Other expences")
+            .navigationTitle("Other")
             .toolbar {
                 Button("Done") { dismiss() }
             }

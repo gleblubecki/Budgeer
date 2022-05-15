@@ -48,7 +48,7 @@ struct TransportationView: View {
                         .font(.subheadline)
                 }
             }
-            .navigationTitle("Transportation expences")
+            .navigationTitle("Transportation")
             .toolbar {
                 Button("Done") { dismiss() }
             }
