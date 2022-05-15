@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D104998D28311B4D00EC209F /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D104998C28311B4D00EC209F /* TestView.swift */; };
 		D16A871628298AD200E2128D /* BudgeerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D16A871528298AD200E2128D /* BudgeerApp.swift */; };
 		D16A871A28298AD400E2128D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D16A871928298AD400E2128D /* Assets.xcassets */; };
 		D16A871D28298AD400E2128D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D16A871C28298AD400E2128D /* Preview Assets.xcassets */; };
@@ -44,7 +43,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		D104998C28311B4D00EC209F /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		D16A871228298AD200E2128D /* Budgeer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Budgeer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D16A871528298AD200E2128D /* BudgeerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgeerApp.swift; sourceTree = "<group>"; };
 		D16A871928298AD400E2128D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -94,7 +92,6 @@
 		D16A870928298AD200E2128D = {
 			isa = PBXGroup;
 			children = (
-				D104998C28311B4D00EC209F /* TestView.swift */,
 				D16A871428298AD200E2128D /* Budgeer */,
 				D16A871328298AD200E2128D /* Products */,
 			);
@@ -309,7 +306,6 @@
 				D16A874A2829929E00E2128D /* HousingView.swift in Sources */,
 				D16A87572829937700E2128D /* OtherView.swift in Sources */,
 				D16A874F2829930A00E2128D /* FoodDrinksView.swift in Sources */,
-				D104998D28311B4D00EC209F /* TestView.swift in Sources */,
 				D16A875F2829942000E2128D /* ExpenceItem.swift in Sources */,
 				D16A87512829932700E2128D /* TransportationView.swift in Sources */,
 				D16A8759282993A000E2128D /* AddView.swift in Sources */,
