@@ -1,15 +1,20 @@
 import SwiftUI
+import RealmSwift
 
-struct TransportationView: View {
-    @ObservedObject var expences: Expences
-    @Environment(\.dismiss) var dismiss
+struct FoodDrinksView: View {
+    @Environment(\.managedObjectContext) var moc
+    @FetchRequest(sortDescriptors: [
+        SortDescriptor(\.date),
+    ]) var expences: FetchedResults<Expence>
     
+    @Environment(\.dismiss) var dismiss
+        
     var totalSum: Double {
         var total = 0.0
-        
-        for item in expences.items {
-            if item.type == "🚋Transportation" {
-                total += item.amount
+
+        for expence in expences {
+            if expence.type == "🥪Food & Drinks" {
+                total += expence.amount
             }
         }
         return total
@@ -26,19 +31,19 @@ struct TransportationView: View {
                 }
                 
                 Section {
-                    ForEach(expences.items) { item in
-                        if item.type == "🚋Transportation" {
+                    ForEach(expences) { expence in
+                        if expence.type == "🥪Food & Drinks" {
                             HStack {
                                 VStack(alignment: .leading) {
-                                    Text(item.name)
+                                    Text(expence.name ?? "Error")
                                         .font(.headline)
                                 }
                                 
                                 Spacer()
                                 
-                                Text(item.amount, format: .currency(code: Locale.current.currencyCode ?? "USD"))
-                                    .fontWeight(item.amount < 10 ? .light : (item.amount < 100 ? .regular : .bold))
-                                    .foregroundColor(item.amount < 10 ? .green : (item.amount < 100 ? .orange : .red))
+                                Text(expence.amount, format: .currency(code: Locale.current.currencyCode ?? "USD"))
+                                    .fontWeight(expence.amount < 10 ? .light : (expence.amount < 100 ? .regular : .bold))
+                                    .foregroundColor(expence.amount < 10 ? .green : (expence.amount < 100 ? .orange : .red))
                             }
                         }
                     }
@@ -48,7 +53,7 @@ struct TransportationView: View {
                         .font(.subheadline)
                 }
             }
-            .navigationTitle("Transportation")
+            .navigationTitle("Food & Drinks")
             .toolbar {
                 Button("Done") { dismiss() }
             }
@@ -56,12 +61,17 @@ struct TransportationView: View {
     }
     
     func removeItems(at offsets: IndexSet) {
-        expences.items.remove(atOffsets: offsets)
+        for offset in offsets {
+            let expece = expences[offset]
+            moc.delete(expece)
+        }
+        
+        try? moc.save()
     }
 }
 
-struct TransportationView_Previews: PreviewProvider {
+struct FoodDrinksView_Previews: PreviewProvider {
     static var previews: some View {
-        TransportationView(expences: Expences())
+        FoodDrinksView()
     }
 }

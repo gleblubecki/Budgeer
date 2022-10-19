@@ -1,7 +1,7 @@
 import SwiftUI
+import RealmSwift
 
 struct CategoriesView: View {
-    @StateObject var expences = Expences()
     @State private var showingHousingExpence = false
     @State private var showingShoppingExpence = false
     @State private var showingFoodDrinksExpence = false
@@ -20,7 +20,7 @@ struct CategoriesView: View {
                     Button("Housing expences") {
                         showingHousingExpence = true
                     } .sheet(isPresented: $showingHousingExpence) {
-                        HousingView(expences: expences)
+                        HousingView()
                     }
                         .foregroundColor(.black)
                         .font(.headline)
@@ -28,7 +28,7 @@ struct CategoriesView: View {
                     Button("Shopping expences") {
                         showingShoppingExpence = true
                     } .sheet(isPresented: $showingShoppingExpence) {
-                        ShoppingView(expences: expences)
+                        ShoppingView()
                     }
                         .foregroundColor(.black)
                         .font(.headline)
@@ -36,7 +36,7 @@ struct CategoriesView: View {
                     Button("Food & Drinks expences") {
                         showingFoodDrinksExpence = true
                     } .sheet(isPresented: $showingFoodDrinksExpence) {
-                        FoodDrinksView(expences: expences)
+                        FoodDrinksView()
                     }
                         .foregroundColor(.black)
                         .font(.headline)
@@ -44,7 +44,7 @@ struct CategoriesView: View {
                     Button("Transportation expences") {
                         showingTransportationExpence = true
                     } .sheet(isPresented: $showingTransportationExpence) {
-                        TransportationView(expences: expences)
+                        TransportationView()
                     }
                         .foregroundColor(.black)
                         .font(.headline)
@@ -52,7 +52,7 @@ struct CategoriesView: View {
                     Button("Entertainment expences") {
                         showingLifeEntertainmentExpence = true
                     } .sheet(isPresented: $showingLifeEntertainmentExpence) {
-                        LifeEntertainmentView(expences: expences)
+                        Entertainment()
                     }
                         .foregroundColor(.black)
                         .font(.headline)
@@ -60,7 +60,7 @@ struct CategoriesView: View {
                     Button("Devices") {
                         showingCommunicationDevicesExpence = true
                     } .sheet(isPresented: $showingCommunicationDevicesExpence) {
-                        CommunicationDevicesView(expences: expences)
+                        Devices()
                     }
                         .foregroundColor(.black)
                         .font(.headline)
@@ -68,7 +68,7 @@ struct CategoriesView: View {
                     Button("Other expences") {
                         showingOtherExpence = true
                     } .sheet(isPresented: $showingOtherExpence) {
-                        OtherView(expences: expences)
+                        OtherView()
                     }
                         .foregroundColor(.black)
                         .font(.headline)

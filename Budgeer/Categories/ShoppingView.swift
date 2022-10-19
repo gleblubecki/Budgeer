@@ -1,15 +1,19 @@
 import SwiftUI
 
-struct LifeEntertainmentView: View {
-    @ObservedObject var expences: Expences
+struct ShoppingView: View {
+    @Environment(\.managedObjectContext) var moc
+    @FetchRequest(sortDescriptors: [
+        SortDescriptor(\.date),
+    ]) var expences: FetchedResults<Expence>
+
     @Environment(\.dismiss) var dismiss
-    
+        
     var totalSum: Double {
         var total = 0.0
-        
-        for item in expences.items {
-            if item.type == "🎉Entertainment" {
-                total += item.amount
+
+        for expence in expences {
+            if expence.type == "🛍️Shopping" {
+                total += expence.amount
             }
         }
         return total
@@ -26,19 +30,19 @@ struct LifeEntertainmentView: View {
                 }
                 
                 Section {
-                    ForEach(expences.items) { item in
-                        if item.type == "🎉Entertainment" {
+                    ForEach(expences) { expence in
+                        if expence.type == "🛍️Shopping" {
                             HStack {
                                 VStack(alignment: .leading) {
-                                    Text(item.name)
+                                    Text(expence.name ?? "Error")
                                         .font(.headline)
                                 }
                                 
                                 Spacer()
                                 
-                                Text(item.amount, format: .currency(code: Locale.current.currencyCode ?? "USD"))
-                                    .fontWeight(item.amount < 10 ? .light : (item.amount < 100 ? .regular : .bold))
-                                    .foregroundColor(item.amount < 10 ? .green : (item.amount < 100 ? .orange : .red))
+                                Text(expence.amount, format: .currency(code: Locale.current.currencyCode ?? "USD"))
+                                    .fontWeight(expence.amount < 10 ? .light : (expence.amount < 100 ? .regular : .bold))
+                                    .foregroundColor(expence.amount < 10 ? .green : (expence.amount < 100 ? .orange : .red))
                             }
                         }
                     }
@@ -48,7 +52,7 @@ struct LifeEntertainmentView: View {
                         .font(.subheadline)
                 }
             }
-            .navigationTitle("Life & Entertainment")
+            .navigationTitle("Shopping")
             .toolbar {
                 Button("Done") { dismiss() }
             }
@@ -56,12 +60,17 @@ struct LifeEntertainmentView: View {
     }
     
     func removeItems(at offsets: IndexSet) {
-        expences.items.remove(atOffsets: offsets)
+        for offset in offsets {
+            let expece = expences[offset]
+            moc.delete(expece)
+        }
+        
+        try? moc.save()
     }
 }
 
-struct LifeEntertainmentView_Previews: PreviewProvider {
+struct ShoppingView_Previews: PreviewProvider {
     static var previews: some View {
-        LifeEntertainmentView(expences: Expences())
+        ShoppingView()
     }
 }

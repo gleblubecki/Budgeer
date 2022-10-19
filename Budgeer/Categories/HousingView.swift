@@ -1,15 +1,19 @@
 import SwiftUI
 
-struct OtherView: View {
-    @ObservedObject var expences: Expences
-    @Environment(\.dismiss) var dismiss
+struct HousingView: View {
+    @Environment(\.managedObjectContext) var moc
+    @FetchRequest(sortDescriptors: [
+        SortDescriptor(\.date),
+    ]) var expences: FetchedResults<Expence>
     
+    @Environment(\.dismiss) var dismiss
+            
     var totalSum: Double {
         var total = 0.0
         
-        for item in expences.items {
-            if item.type == "📄Other" {
-                total += item.amount
+        for expence in expences {
+            if expence.type == "🏠Housing" {
+                total += expence.amount
             }
         }
         return total
@@ -26,19 +30,22 @@ struct OtherView: View {
                 }
                 
                 Section {
-                    ForEach(expences.items) { item in
-                        if item.type == "📄Other" {
+                    ForEach(expences) { expence in
+                        if expence.type == "🏠Housing" {
                             HStack {
                                 VStack(alignment: .leading) {
-                                    Text(item.name)
+                                    Text(expence.name ?? "Error")
                                         .font(.headline)
                                 }
-                                
+
                                 Spacer()
-                                
-                                Text(item.amount, format: .currency(code: Locale.current.currencyCode ?? "USD"))
-                                    .fontWeight(item.amount < 10 ? .light : (item.amount < 100 ? .regular : .bold))
-                                    .foregroundColor(item.amount < 10 ? .green : (item.amount < 100 ? .orange : .red))
+
+                                Rectangle()
+                                    .frame(width: 5, height: 30)
+                                    .cornerRadius(10)
+                                    .foregroundColor(expence.amount < 10 ? .green : (expence.amount < 100 ? .orange : .red))
+
+                                Text(expence.amount, format: .currency(code: Locale.current.currencyCode ?? "USD"))
                             }
                         }
                     }
@@ -48,7 +55,7 @@ struct OtherView: View {
                         .font(.subheadline)
                 }
             }
-            .navigationTitle("Other")
+            .navigationTitle("Housing")
             .toolbar {
                 Button("Done") { dismiss() }
             }
@@ -56,12 +63,17 @@ struct OtherView: View {
     }
     
     func removeItems(at offsets: IndexSet) {
-        expences.items.remove(atOffsets: offsets)
+        for offset in offsets {
+            let expece = expences[offset]
+            moc.delete(expece)
+        }
+        
+        try? moc.save()
     }
 }
 
-struct OtherView_Previews: PreviewProvider {
+struct HousingView_Previews: PreviewProvider {
     static var previews: some View {
-        OtherView(expences: Expences())
+        HousingView()
     }
 }

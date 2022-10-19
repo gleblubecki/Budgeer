@@ -1,15 +1,14 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject var expences = Expences()
             
     var body: some View {
         TabView {
-            HomeView(expences: Expences())
+            HomeView()
                 .tabItem {
                     Label("Home", systemImage: "house")
                 }
-            CategoriesView(expences: Expences())
+            CategoriesView()
                 .tabItem {
                     Label("Categories", systemImage: "list.bullet.rectangle.portrait.fill")
                 }

@@ -1,17 +1,13 @@
-//
-//  BudgeerApp.swift
-//  Budgeer
-//
-//  Created by Глеб Любецкий on 09.05.2022.
-//
-
 import SwiftUI
 
 @main
-struct BudgeerApp: App {
+struct ReadTrackerApp: App {
+    @StateObject private var dataController = DataController()
+
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environment(\.managedObjectContext, dataController.container.viewContext) 
         }
     }
 }

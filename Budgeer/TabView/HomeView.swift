@@ -1,14 +1,17 @@
 import SwiftUI
 
 struct HomeView: View {
-    @StateObject var expences = Expences()
+    @Environment(\.managedObjectContext) var moc
+    @FetchRequest(sortDescriptors: [
+        SortDescriptor(\.date),
+    ]) var expences: FetchedResults<Expence>
+    
     @State private var showingAddExpence = false
-        
+                
     var totalSum: Double {
         var total = 0.0
-        
-        for item in expences.items {
-            total += item.amount
+        for expence in expences {
+            total += expence.amount
         }
         return total
     }
@@ -19,6 +22,7 @@ struct HomeView: View {
                 .ignoresSafeArea()
             
             VStack {
+                
                 VStack {
                     HStack {
                         Text("Budgeer")
@@ -39,7 +43,7 @@ struct HomeView: View {
                             
                         }
                         .sheet(isPresented: $showingAddExpence) {
-                            AddView(expences: expences)
+                            AddView()
                         }
                         
                         Spacer()
@@ -73,12 +77,12 @@ struct HomeView: View {
                                     .foregroundColor(Color("TitleColor"))
                             }
                             
-                            ForEach(expences.items) { item in
+                            ForEach(expences) { item in
                                 HStack {
                                     VStack(alignment: .leading) {
-                                        Text(item.name)
+                                        Text(item.name ?? "Error")
                                             .font(.headline)
-                                        Text(item.type)
+                                        Text(item.type ?? "Error")
                                     }
 
                                     Spacer()
@@ -89,7 +93,6 @@ struct HomeView: View {
                                         .foregroundColor(item.amount < 10 ? .green : (item.amount < 100 ? .orange : .red))
 
                                     Text(item.amount, format: .currency(code: Locale.current.currencyCode ?? "USD"))
-
                                 }
                             }
                             .onDelete(perform: removeItems)
@@ -99,15 +102,19 @@ struct HomeView: View {
             }
         }
     }
-    
     func removeItems(at offsets: IndexSet) {
-        expences.items.remove(atOffsets: offsets)
+        for offset in offsets {
+            let expece = expences[offset]
+            moc.delete(expece)
+        }
+        
+        try? moc.save()
     }
 }
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView(expences: Expences())
+        HomeView()
             .previewInterfaceOrientation(.portrait)
     }
 }

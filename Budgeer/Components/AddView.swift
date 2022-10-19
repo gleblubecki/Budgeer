@@ -1,9 +1,11 @@
 import SwiftUI
+import RealmSwift
 
 struct AddView: View {
-    @ObservedObject var expences: Expences
+    
+    @Environment(\.managedObjectContext) var moc
     @Environment(\.dismiss) var dismiss
-        
+    
     @State private var name = ""
     @State private var type = "🏠Housing"
     @State private var amount = 0.0
@@ -28,19 +30,27 @@ struct AddView: View {
                 }
                 .navigationTitle("Add new expence")
                 .toolbar {
-                    Button("Save") {
-                        let item = ExpenceItem(name: name, type: type, amount: amount)
-                        expences.items.insert(item, at: 0)
-                        dismiss()
-                    }
+                    Button("Save", action: addExpance)
                 }
             }
         }
+    }
+    
+    func addExpance() {
+        let newExpence = Expence(context: moc)
+        
+        newExpence.id = UUID()
+        newExpence.name = name
+        newExpence.type = type
+        newExpence.amount = amount
+        
+        try? moc.save()
+        dismiss()
     }
 }
 
 struct AddView_Previews: PreviewProvider {
     static var previews: some View {
-        AddView(expences: Expences())
+        AddView()
     }
 }
